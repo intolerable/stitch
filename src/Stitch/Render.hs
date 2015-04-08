@@ -32,8 +32,8 @@ renderStitchTWith f s = do
 
 -- | Outputs a basic human-readable version of the CSS document. Line breaks are added between blocks, and properties are spaced nicely.
 basic :: BlockPrinter
-basic [] (Block _ cs) =
-  Text.intercalate "\n" $ collectChildren basic [] cs
+basic [] (Block ps cs) =
+  Text.intercalate "\n" $ map ((<> ";") . basicProp) ps <>collectChildren basic [] cs
 basic selectors (Block ps cs) =
   case map basicProp ps of
     [] -> Text.intercalate " " $ collectChildren basic selectors cs

@@ -42,9 +42,9 @@ basicInner selectors (InnerBlock [] cs) =
 basicInner selectors (InnerBlock ps cs) =
   Text.intercalate "\n" $ Text.intercalate " "
     [ unSelector $ mconcat $ reverse selectors
-    , "{"
-    , Text.intercalate "; " $ map basicProp ps
-    , "}" ] : collectChildren basicInner selectors cs
+    , "{\n "
+    , Text.intercalate ";\n  " $ map basicProp ps
+    , "\n}" ] : collectChildren basicInner selectors cs
 
 basicImport :: Import -> Text
 basicImport (Import i) = mconcat ["@import ", i]

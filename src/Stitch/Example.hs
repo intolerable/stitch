@@ -10,11 +10,15 @@ import Data.Text (Text)
 exampleCSS :: CSS
 exampleCSS = do
   cssImport "url(http://fonts.googleapis.com/css?family=Lato)"
+  comment "This is an example comment. The \"compressed\" printer automatically strips comments to save space"
   "body" ? do
     "background-color" .= "#dddddd"
     "color" .= "#000000"
     "h1" ? do
       "color" .= "green"
+    "h2" ? do
+      "a:hover" ? do
+        "color" .= "blue"
   "h1" ?
     "font-weight" .= "bold"
 

@@ -1,0 +1,30 @@
+module Stitch.Combinators
+  ( (.=)
+  , (?)
+  , comment
+  , cssImport ) where
+
+import Control.Monad.Trans.Stitch
+import Stitch.Types
+
+import Control.Monad.Trans.Writer.Strict
+import Data.Monoid
+import Data.Text (Text)
+import qualified Data.Map as Map
+
+-- | Add a key-value property pair.
+(.=) :: Monad m => Text -> Text -> StitchT m ()
+k .= v = StitchT $ tell $ Block [Property k v] mempty
+infix 7 .=
+
+-- | Nest a selector under the current selector.
+(?) :: Monad m => Selector -> StitchT m a -> StitchT m a
+sel ? (StitchT x) = StitchT $ censor (Block [] . Children . Map.singleton sel) x
+infixr 6 ?
+
+-- | Add a comment to the CSS output.
+comment :: Monad m => Text -> StitchT m ()
+comment c = StitchT $ tell $ Block [Comment c] mempty
+
+cssImport :: Monad m => Text -> StitchT m ()
+cssImport u = StitchT $ tell $ Block [Import u] mempty

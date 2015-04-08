@@ -2,6 +2,7 @@
 module Stitch.Example where
 
 import Stitch
+import Stitch.Combinators
 
 import Data.Text (Text)
 

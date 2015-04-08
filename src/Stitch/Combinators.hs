@@ -1,6 +1,7 @@
 module Stitch.Combinators
   ( (.=)
   , (?)
+  , (-:)
   , comment
   , cssImport ) where
 
@@ -21,6 +22,14 @@ infix 7 .=
 (?) :: Monad m => Selector -> StitchT m a -> StitchT m a
 sel ? (StitchT x) = StitchT $ censor (Block [] . Children . Map.singleton sel) x
 infixr 6 ?
+
+(-:) :: Monad m => Text -> StitchT m a -> StitchT m a
+prefix -: (StitchT x) =
+  StitchT $ censor (\(Block ps _) -> Block (map (prefixProperty prefix) ps) mempty) x
+
+prefixProperty :: Text -> Property -> Property
+prefixProperty pref (Property k v) = Property (pref <> "-" <> k) v
+prefixProperty _ x = x
 
 -- | Add a comment to the CSS output.
 comment :: Monad m => Text -> StitchT m ()

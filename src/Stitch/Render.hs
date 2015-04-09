@@ -54,7 +54,7 @@ basicProp (Comment t) = mconcat ["/* ", t, " */"]
 basicProp (Property k v) = mconcat [k, ": ", v]
 
 basicPropTL :: Property -> Text
-basicPropTL (Comment t) = mconcat ["/* ", t, "*/"]
+basicPropTL (Comment t) = mconcat ["/* ", t, " */"]
 basicPropTL _ = mempty
 
 collectChildren :: InnerBlockPrinter -> Selector -> Children -> [Text]

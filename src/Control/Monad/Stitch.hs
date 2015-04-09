@@ -6,7 +6,7 @@ module Control.Monad.Stitch
 import Control.Monad.Trans.Stitch
 import Stitch.Types
 
-import Control.Monad.Identity
+import Data.Functor.Identity
 
 -- | The 'StitchT' monad transformer specialized to 'Identity'. This will typically be the Stitch variant used since it doesn't do anything special.
 type Stitch = StitchT Identity

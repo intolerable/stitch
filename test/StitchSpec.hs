@@ -19,6 +19,15 @@ spec = do
   match "basic_props.css" $ do
     "body" ? do
       "color" .= "red"
+  match "multiple_props.css" $ do
+    "body" ? do
+      "color" .= "red"
+      "background-color" .= "blue"
+  match "basic_nested_props.css" $ do
+    "body" ? do
+      "color" .= "red"
+      "h1" ?
+        "font-size" .= "200%"
 
 match :: FilePath -> CSS -> SpecWith ()
 match fn css = describe fn $ do

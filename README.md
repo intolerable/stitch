@@ -1,6 +1,6 @@
 # Stitch
 
-a tiny css preprocessor dsl for haskell
+a tiny css dsl for haskell
 
 this haskell code:
 ```haskell

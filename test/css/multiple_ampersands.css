@@ -1,0 +1,6 @@
+a, h1 {
+  color: red
+}
+a:hover, h1:hover {
+  color: blue
+}

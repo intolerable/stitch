@@ -1,0 +1,6 @@
+h1 a, h2 a {
+  color: red
+}
+h1 a:hover, h1 a:active, h2 a:hover, h2 a:active {
+  color: blue
+}

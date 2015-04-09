@@ -28,6 +28,32 @@ spec = do
       "color" .= "red"
       "h1" ?
         "font-size" .= "200%"
+  match "basic_ampersand.css" $
+    "a" ? do
+      "color" .= "red"
+      "&:hover" ?
+        "color" .= "blue"
+  match "ampersand_after.css" $ do
+    ".button" ?
+      "h1" ?
+        ".selected &" ?
+          "color" .= "red"
+  match "multiple_ampersands.css" $
+    "a, h1" ? do
+      "color" .= "red"
+      "&:hover" ?
+        "color" .= "blue"
+  match "basic_prefix.css" $
+    "body" ?
+      "font" -: do
+        "size" .= "1.5em"
+        "family" .= "Helvetica, sans"
+  match "multiple_selectors.css" $
+    "h1, h2" ?
+      "a" ? do
+        "color" .= "red"
+        "&:hover, &:active" ?
+          "color" .= "blue"
 
 match :: FilePath -> CSS -> SpecWith ()
 match fn css = describe fn $

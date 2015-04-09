@@ -50,7 +50,7 @@ basicImport :: Import -> Text
 basicImport (Import i) = mconcat ["@import ", i]
 
 basicProp :: Property -> Text
-basicProp (Comment t) = mconcat ["/* ", t, " */"]
+basicProp (Comment t) = mconcat ["/* ", Text.replace "\n" "\n  " t, " */"]
 basicProp (Property k v) = mconcat [k, ": ", v]
 
 basicPropTL :: Property -> Text

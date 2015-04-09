@@ -40,9 +40,9 @@ basicInner :: InnerBlockPrinter
 basicInner selectors (InnerBlock [] cs) =
   Text.intercalate " " $ collectChildren basicInner selectors cs
 basicInner selectors (InnerBlock ps cs) =
-  Text.intercalate "\n" $ Text.intercalate " "
+  Text.intercalate "\n" $ mconcat
     [ unSelector $ mconcat $ reverse selectors
-    , "{\n "
+    , " {\n  "
     , Text.intercalate ";\n  " $ map basicProp ps
     , "\n}" ] : collectChildren basicInner selectors cs
 

@@ -71,7 +71,7 @@ compressedInner selectors (InnerBlock [] cs) =
   Text.intercalate "" $ collectChildren compressedInner selectors cs
 compressedInner selectors (InnerBlock ps cs) =
   Text.intercalate "" $ Text.intercalate ""
-    [ Text.intercalate ", " $ unSelector selectors
+    [ Text.intercalate "," $ unSelector selectors
     , "{"
     , Text.intercalate ";" $ map compressedProp ps
     , "}" ] : collectChildren compressedInner selectors cs

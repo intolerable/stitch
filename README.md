@@ -10,8 +10,10 @@ style :: CSS
 style = "body" ? do
   "h1" ? do
     "color" .= "#444"
-    "a:hover" ?
+    "a" ? do
       "color" .= "#448"
+      "&:hover" ?
+        "color" .= "#44F"
     "font" -: do
       "family" .= "Open Sans, sans"
       "size" .= "1.4em"
@@ -26,8 +28,11 @@ body h1 {
   font-size: 1.4em;
   font-weight: bold
 }
-body h1 a:hover {
+body h1 a {
   color: #448
+}
+body h1 a:hover {
+  color: #44F
 }
 ```
 

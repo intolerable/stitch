@@ -17,8 +17,10 @@ exampleCSS = do
     "h1" ? do
       "color" .= "green"
     "h2" ? do
-      "a:hover" ? do
+      "a" ? do
         "color" .= "blue"
+        "&:hover" ? do
+          "color" .= "green"
   "h1" ?
     "font-weight" .= "bold"
 

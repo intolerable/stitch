@@ -12,6 +12,7 @@ import Control.Monad.Trans.Writer.Strict
 import Data.Monoid
 import Data.Text (Text)
 import qualified Data.Map as Map
+import qualified Data.Text as Text
 
 -- | Add a key-value property pair.
 (.=) :: Monad m => Text -> Text -> StitchT m ()
@@ -28,7 +29,7 @@ prefix -: (StitchT x) =
   StitchT $ censor (\(Block _ ps _) -> Block [] (map (prefixProperty prefix) ps) mempty) x
 
 prefixProperty :: Text -> Property -> Property
-prefixProperty pref (Property k v) = Property (pref <> "-" <> k) v
+prefixProperty pref (Property k v) = Property (if Text.null k then pref else pref <> "-" <> k) v
 prefixProperty _ x = x
 
 -- | Add a comment to the CSS output.

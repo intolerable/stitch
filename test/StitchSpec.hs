@@ -58,6 +58,12 @@ spec = do
         "size" .= "1.5em"
         "family" .= "Helvetica, sans"
 
+  match "nested_prefixes.css" $
+    "body" ?
+      "a" -:
+        "b" -:
+          "c" .= "red"
+
   match "multiple_selectors.css" $
     "h1, h2" ?
       "a" ? do

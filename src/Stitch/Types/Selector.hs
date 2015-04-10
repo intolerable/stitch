@@ -27,4 +27,4 @@ instance Monoid Selector where
         else return $ x <> " " <> y
 
 fromText :: Text -> Selector
-fromText = Selector . map Text.strip . Text.splitOn ","
+fromText = Selector . filter (not . Text.null) . map Text.strip . Text.splitOn ","

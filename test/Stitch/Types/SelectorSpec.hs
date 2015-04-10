@@ -29,3 +29,8 @@ spec = do
         test "h1" "h2" "h3"
         test mempty mempty mempty
         test "&:active" "&:hover" ".red &"
+    describe "fromText" $ do
+      it "should ignore empty strings" $ do
+        fromText "" `shouldBe` Selector []
+      it "should handle commas" $ do
+        fromText "h1, h2" `shouldBe` Selector ["h1", "h2"]

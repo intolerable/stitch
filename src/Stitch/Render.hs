@@ -72,13 +72,13 @@ compressed (Block is _ cs) =
 
 compressedInner :: InnerBlockPrinter
 compressedInner selectors (InnerBlock [] cs) =
-  Text.intercalate "" $ collectChildren compressedInner selectors cs
+  mconcat $ collectChildren compressedInner selectors cs
 compressedInner selectors (InnerBlock ps cs) =
   if all (Text.isInfixOf "&") $ unSelector selectors
     then
       mconcat $collectChildren compressedInner selectors cs
     else
-      Text.intercalate "" $ Text.intercalate ""
+      mconcat $ mconcat
         [ Text.intercalate "," $ filter (not . Text.isInfixOf "&") $ unSelector selectors
         , "{"
         , Text.intercalate ";" $ map compressedProp ps

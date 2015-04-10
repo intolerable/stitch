@@ -1,5 +1,6 @@
 module Stitch.Types.Selector
-  ( Selector(..) ) where
+  ( Selector(..)
+  , fromText ) where
 
 import Data.Text (Text)
 import Data.Monoid
@@ -11,7 +12,7 @@ newtype Selector = Selector { unSelector :: [Text] }
   deriving (Show, Read, Eq, Ord)
 
 instance IsString Selector where
-  fromString = Selector . map Text.strip . Text.splitOn "," . fromString
+  fromString = fromText . fromString
 
 instance Monoid Selector where
   mempty = Selector []
@@ -26,3 +27,6 @@ instance Monoid Selector where
       if Text.isInfixOf "&" y
         then return $ Text.replace "&" x y
         else return $ x <> " " <> y
+
+fromText :: Text -> Selector
+fromText = Selector . map Text.strip . Text.splitOn ","

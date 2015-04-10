@@ -1,5 +1,5 @@
 module Stitch.Types
-  ( module Stitch.Types.Selector
+  ( Selector(..)
   , Children(..)
   , Property(..)
   , Import(..)

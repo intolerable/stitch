@@ -40,11 +40,15 @@ basicInner :: InnerBlockPrinter
 basicInner selectors (InnerBlock [] cs) =
   Text.intercalate " " $ collectChildren basicInner selectors cs
 basicInner selectors (InnerBlock ps cs) =
-  Text.intercalate "\n" $ mconcat
-    [ Text.intercalate ", " $ unSelector selectors
-    , " {\n  "
-    , Text.intercalate ";\n  " $ map basicProp ps
-    , "\n}" ] : collectChildren basicInner selectors cs
+  if all (Text.isInfixOf "&") $ unSelector selectors
+    then
+      Text.intercalate "\n" $ collectChildren basicInner selectors cs
+    else
+      Text.intercalate "\n" $ mconcat
+        [ Text.intercalate ", " $ filter (not . Text.isInfixOf "&") $ unSelector selectors
+        , " {\n  "
+        , Text.intercalate ";\n  " $ map basicProp ps
+        , "\n}" ] : collectChildren basicInner selectors cs
 
 basicImport :: Import -> Text
 basicImport (Import i) = mconcat ["@import ", i]
@@ -70,11 +74,15 @@ compressedInner :: InnerBlockPrinter
 compressedInner selectors (InnerBlock [] cs) =
   Text.intercalate "" $ collectChildren compressedInner selectors cs
 compressedInner selectors (InnerBlock ps cs) =
-  Text.intercalate "" $ Text.intercalate ""
-    [ Text.intercalate "," $ unSelector selectors
-    , "{"
-    , Text.intercalate ";" $ map compressedProp ps
-    , "}" ] : collectChildren compressedInner selectors cs
+  if all (Text.isInfixOf "&") $ unSelector selectors
+    then
+      mconcat $collectChildren compressedInner selectors cs
+    else
+      Text.intercalate "" $ Text.intercalate ""
+        [ Text.intercalate "," $ filter (not . Text.isInfixOf "&") $ unSelector selectors
+        , "{"
+        , Text.intercalate ";" $ map compressedProp ps
+        , "}" ] : collectChildren compressedInner selectors cs
 
 compressedProp :: Property -> Text
 compressedProp (Comment _) = mempty

@@ -71,6 +71,10 @@ spec = do
         "&:hover, &:active" ?
           "color" .= "blue"
 
+  match "no_top_level_amps.css" $
+    "&:hover" ?
+      "color" .= "red"
+
 match :: FilePath -> CSS -> SpecWith ()
 match fn css = describe fn $
   it "matches the rendered css" $ do

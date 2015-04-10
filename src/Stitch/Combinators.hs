@@ -17,7 +17,7 @@ import qualified Data.Text as Text
 -- | Add a key-value property pair.
 (.=) :: Monad m => Text -> Text -> StitchT m ()
 k .= v = StitchT $ tell $ Block [] [Property k v] mempty
-infix 7 .=
+infix 8 .=
 
 -- | Nest a selector under the current selector.
 (?) :: Monad m => Selector -> StitchT m a -> StitchT m a
@@ -27,6 +27,7 @@ infixr 6 ?
 (-:) :: Monad m => Text -> StitchT m a -> StitchT m a
 prefix -: (StitchT x) =
   StitchT $ censor (\(Block _ ps _) -> Block [] (map (prefixProperty prefix) ps) mempty) x
+infixr 7 -:
 
 prefixProperty :: Text -> Property -> Property
 prefixProperty pref (Property k v) = Property (if Text.null k then pref else pref <> "-" <> k) v

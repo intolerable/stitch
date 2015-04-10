@@ -16,10 +16,8 @@ instance IsString Selector where
 
 instance Monoid Selector where
   mempty = Selector []
-  Selector [] `mappend` Selector ys =
-    Selector (filter (not . Text.isInfixOf "&") ys)
-  Selector xs `mappend` Selector [] =
-    Selector xs
+  Selector [] `mappend` Selector ys = Selector ys
+  Selector xs `mappend` Selector [] = Selector xs
   Selector xs `mappend` Selector ys =
     Selector $ do
       x <- xs

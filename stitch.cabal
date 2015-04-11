@@ -1,5 +1,5 @@
 name:                stitch
-version:             0.2.0.0
+version:             0.3.0.0
 synopsis:            lightweight CSS DSL
 description:         a tiny css preprocessor dsl for haskell – check out the readme at <https://github.com/intolerable/stitch>
 license:             BSD3

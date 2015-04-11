@@ -25,7 +25,7 @@ data Property = Property Text Text
               | Comment Text
   deriving (Show, Read, Eq)
 
-data Import = Import Text
+newtype Import = Import Text
   deriving (Show, Read, Eq)
 
 data InnerBlock = InnerBlock [Property] Children

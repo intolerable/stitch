@@ -1,3 +1,4 @@
+-- | This module exports the 'Stitch' type, which is simply 'StitchT' parameterized over 'Identity', for computations which don't require any other monadic capabilities.
 module Control.Monad.Stitch
   ( Stitch
   , CSS

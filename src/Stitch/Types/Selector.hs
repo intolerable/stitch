@@ -1,3 +1,4 @@
+-- | This module defines everything used to manage CSS selectors: creating them as well as combining them (using the 'Monoid' instance). It also includes a function 'fromText' for converting arbitrary 'Text's to 'Selector's.
 module Stitch.Types.Selector
   ( Selector(..)
   , fromText ) where
@@ -26,5 +27,6 @@ instance Monoid Selector where
         then return $ Text.replace "&" x y
         else return $ x <> " " <> y
 
+-- | Parse a 'Selector' from a 'Text' value. This is the same function used by the 'IsString' instance used by @OverloadedStrings@.
 fromText :: Text -> Selector
 fromText = Selector . filter (not . Text.null) . map Text.strip . Text.splitOn ","

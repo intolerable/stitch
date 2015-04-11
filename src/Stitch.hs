@@ -1,3 +1,4 @@
+-- | Importing this module should bring enough functions into scope to use the Stitch DSL for most purposes.
 module Stitch
   (
   -- * Core

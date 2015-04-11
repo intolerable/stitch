@@ -1,6 +1,7 @@
+-- | This module contains all the functions needed to convert a CSS document from its internal representation ('Block') to a concrete text-format CSS output.
 module Stitch.Render
-  ( BlockPrinter
-  , renderCSS
+  ( renderCSS
+  , BlockPrinter
   , renderCSSWith
   , renderStitchTWith
   , basic
@@ -15,6 +16,7 @@ import Data.Text (Text)
 import qualified Data.Map as Map
 import qualified Data.Text as Text
 
+-- | Type of the CSS printers – a function from the internal 'Block' representation of the CSS to a concrete 'Text' output.
 type BlockPrinter = (Block -> Text)
 type InnerBlockPrinter = (Selector -> InnerBlock -> Text)
 
@@ -26,6 +28,7 @@ renderCSS = renderCSSWith basic
 renderCSSWith :: BlockPrinter -> CSS -> Text
 renderCSSWith f c = f $ snd $ runStitch c
 
+-- | Convert an abstract 'CSS' document built with the 'StitchT' transformer into its monad-wrapped 'Text' output. Unless you're explicitly using the transformer, this function is probably not useful.
 renderStitchTWith :: Monad m => BlockPrinter -> StitchT m () -> m Text
 renderStitchTWith f s = do
   (_, block) <- runStitchT s

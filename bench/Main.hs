@@ -6,6 +6,7 @@ import Stitch.Render
 import Control.Monad
 import Criterion.Main
 import Data.Monoid
+import Prelude
 
 main :: IO ()
 main = defaultMain

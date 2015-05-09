@@ -11,7 +11,7 @@ import Control.Monad.Trans.Writer.Strict
 import Data.Monoid
 
 newtype StitchT m a = StitchT (WriterT Block m a)
-  deriving (Functor, Applicative, Monad, MonadIO, MonadTrans)
+  deriving (Functor, Applicative, Monad, Alternative, MonadIO, MonadTrans)
 
 instance (Applicative m, Monoid a) => Monoid (StitchT m a) where
   mempty = pure mempty

@@ -4,6 +4,7 @@ module Stitch
   -- * Core
     CSS
   , renderCSS
+  , printCSS
   , Selector(..)
   -- * Combinators
   , (?)

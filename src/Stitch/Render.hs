@@ -15,6 +15,7 @@ import Data.Monoid
 import Data.Text (Text)
 import qualified Data.Map as Map
 import qualified Data.Text as Text
+import qualified Data.Text.IO as Text
 
 -- | Type of the CSS printers – a function from the internal 'Block' representation of the CSS to a concrete 'Text' output.
 type BlockPrinter = (Block -> Text)
@@ -23,6 +24,9 @@ type InnerBlockPrinter = (Selector -> InnerBlock -> Text)
 -- | Convert an abstract 'CSS' document to a real CSS document.
 renderCSS :: CSS -> Text
 renderCSS = renderCSSWith basic
+
+printCSS :: CSS -> IO ()
+printCSS = Text.putStrLn . renderCSS
 
 -- | Convert an abstract 'CSS' document to a real CSS document using a specific printer. A simple printer called 'basic' is included, as well as a compressing printer called 'compressed'.
 renderCSSWith :: BlockPrinter -> CSS -> Text

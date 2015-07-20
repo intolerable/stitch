@@ -1,4 +1,4 @@
-# Stitch
+# Stitch [![Build Status](https://travis-ci.org/intolerable/stitch.svg?branch=master)](https://travis-ci.org/intolerable/stitch)
 
 a tiny css dsl for haskell
 

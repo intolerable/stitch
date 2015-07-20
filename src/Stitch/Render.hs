@@ -1,6 +1,7 @@
 -- | This module contains all the functions needed to convert a CSS document from its internal representation ('Block') to a concrete text-format CSS output.
 module Stitch.Render
   ( renderCSS
+  , printCSS
   , BlockPrinter
   , renderCSSWith
   , renderStitchTWith

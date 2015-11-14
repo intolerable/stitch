@@ -4,7 +4,9 @@ a tiny css dsl for haskell
 
 this haskell code:
 ```haskell
+{-# language OverloadedStrings #-}
 import Stitch
+import Stitch.Combinators
 
 style :: CSS
 style = "body" ? do
@@ -18,9 +20,11 @@ style = "body" ? do
       "family" .= "Open Sans, sans"
       "size" .= "1.4em"
       "weight" .= "bold"
+      
+main = printCSS style 
 ```
 
-turns into this:
+Will produce the output below:
 ```
 body h1 {
   color: #444;

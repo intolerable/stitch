@@ -51,12 +51,20 @@ infixr 6 ?
 -- > "font-weight" .= "bold"
 (-:) :: Monad m => Text -> StitchT m a -> StitchT m a
 prefix -: (StitchT x) =
-  StitchT $ censor (\(Block _ ps _) -> Block [] (map (prefixProperty prefix) ps) mempty) x
-infixr 7 -:
+  StitchT $ censor (\(Block _ ps cs) -> Block [] (map (prefixProperty prefix) ps) (prefixChildren prefix cs)) x
+infixr 6 -:
 
 prefixProperty :: Text -> Property -> Property
 prefixProperty pref (Property k v) = Property (if Text.null k then pref else pref <> "-" <> k) v
 prefixProperty _ x = x
+
+prefixChildren :: Text -> Children -> Children
+prefixChildren pref (Children x) = Children (fmap (prefixInnerBlock pref) x)
+
+prefixInnerBlock :: Text -> InnerBlock -> InnerBlock
+prefixInnerBlock pref (InnerBlock ps cs) =
+  InnerBlock (fmap (prefixProperty pref) ps)
+             (prefixChildren pref cs)
 
 -- | Add a comment to the CSS output. The 'Stitch.Render.compressed' printer won't add comments to the final CSS output.
 comment :: Monad m => Text -> StitchT m ()

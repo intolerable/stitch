@@ -1,0 +1,6 @@
+body p {
+  background-color: red
+}
+body p:first-child {
+  background-image-type: none
+}

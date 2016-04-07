@@ -75,6 +75,15 @@ spec = do
     "&:hover" ?
       "color" .= "red"
 
+  match "prefixed_ampersands.css" $
+    "body" ?
+      "background" -:
+        "& p" ? do
+          "color" .= "red"
+          "image" -:
+            "&:first-child" ?
+              "type" .= "none"
+
 match :: FilePath -> CSS -> SpecWith ()
 match fn css = describe fn $
   it "matches the rendered css" $ do

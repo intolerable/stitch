@@ -1,9 +1,26 @@
-language: haskell
-ghc:
-  - "7.6"
-  - "7.8"
-  # disabled because travis doesn't yet support it
-  # - "7.10"
 sudo: false
-notifications:
-  email: false
+
+language: generic
+
+# Caching so the next build will be fast too.
+cache:
+  directories:
+  - $HOME/.stack
+
+before_install:
+  # Download and unpack the stack executable
+  - mkdir -p ~/.local/bin
+  - export PATH=$HOME/.local/bin:$PATH
+  - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+
+matrix:
+  include:
+    - env: STACK_YAML=stack-lts-2.22 # GHC 7.8.4
+    - env: STACK_YAML=stack-lts-3.22 # GHC 7.10.2
+    - env: STACK_YAML=stack-lts-6.35 # GHC 7.10.3
+    - env: STACK_YAML=stack-lts-7.24 # GHC 8.0.1
+    - env: STACK_YAML=stack-lts-9.14 # GHC 8.0.2
+    - env: STACK_YAML=stack-nightly  # GHC 8.2.2
+
+script:
+  - travis_wait 180 stack --no-terminal --install-ghc --skip-ghc-check test

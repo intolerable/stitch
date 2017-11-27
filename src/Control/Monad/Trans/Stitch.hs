@@ -8,7 +8,7 @@ import Control.Applicative
 import Control.Monad.IO.Class
 import Control.Monad.Trans.Class
 import Control.Monad.Trans.Writer.Strict
-import Data.Monoid
+import Data.Monoid (Monoid(..))
 
 newtype StitchT m a = StitchT (WriterT Block m a)
   deriving (Functor, Applicative, Monad, Alternative, MonadIO, MonadTrans)

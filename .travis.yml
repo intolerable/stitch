@@ -15,9 +15,6 @@ before_install:
 
 matrix:
   include:
-    - env: STACK_YAML=stack-lts-2.22 # GHC 7.8.4
-    - env: STACK_YAML=stack-lts-3.22 # GHC 7.10.2
-    - env: STACK_YAML=stack-lts-6.35 # GHC 7.10.3
     - env: STACK_YAML=stack-lts-7.24 # GHC 8.0.1
     - env: STACK_YAML=stack-lts-9.14 # GHC 8.0.2
     - env: STACK_YAML=stack-lts-10.8 # GHC 8.2.2

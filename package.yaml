@@ -1,0 +1,57 @@
+name: stitch
+version: '0.5.0.0'
+synopsis: lightweight CSS DSL
+description: a tiny css preprocessor dsl for haskell – check out the readme at <https://github.com/intolerable/stitch>
+category: Web
+author: Fraser Murray
+maintainer: fraser.m.murray@gmail.com
+copyright: © Fraser Murray 2015
+license: BSD3
+git: git://github.com/intolerable/stitch.git
+
+extra-source-files:
+  - test/css/*.css
+
+default-extensions:
+  - OverloadedStrings
+  - GeneralizedNewtypeDeriving
+
+ghc-options:
+  - -Wall
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Control.Monad.Stitch
+    - Control.Monad.Trans.Stitch
+    - Stitch
+    - Stitch.Combinators
+    - Stitch.Example
+    - Stitch.Render
+    - Stitch.Types
+    - Stitch.Types.Selector
+  dependencies:
+    - base >=4.6 && <4.11
+    - containers
+    - text
+    - transformers
+
+tests:
+  test:
+    main: Spec.hs
+    source-dirs: test
+    dependencies:
+    - base ==4.*
+    - Cabal >=1.16.0
+    - stitch
+    - hspec
+    - text
+
+benchmarks:
+  bench:
+    main: Main.hs
+    source-dirs: bench
+    dependencies:
+    - base ==4.*
+    - stitch
+    - criterion

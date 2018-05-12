@@ -21,7 +21,7 @@ matrix:
     - env: STACK_YAML=stack-lts-7.24 # GHC 8.0.1
     - env: STACK_YAML=stack-lts-9.14 # GHC 8.0.2
     - env: STACK_YAML=stack-lts-10.8 # GHC 8.2.2
-    - env: STACK_YAML=stack-nightly  # GHC 8.2.2
+    - env: STACK_YAML=stack.yaml     # current
 
 script:
   - travis_wait 180 stack --no-terminal --install-ghc --skip-ghc-check test

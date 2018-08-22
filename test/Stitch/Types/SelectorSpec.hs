@@ -3,6 +3,7 @@ module Stitch.Types.SelectorSpec where
 import Stitch.Types.Selector
 
 import Data.Monoid (Monoid(..))
+import Data.Semigroup ((<>))
 import Test.Hspec hiding (Selector)
 
 main :: IO ()

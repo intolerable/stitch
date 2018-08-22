@@ -11,6 +11,7 @@ import Stitch.Types
 
 import Control.Monad.Trans.Writer.Strict
 import Data.Monoid (Monoid(..))
+import Data.Semigroup ((<>))
 import Data.Text (Text)
 import qualified Data.Map as Map
 import qualified Data.Text as Text

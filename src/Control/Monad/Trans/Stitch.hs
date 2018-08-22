@@ -21,5 +21,5 @@ instance (Applicative m, Monoid a, Semigroup a) => Monoid (StitchT m a) where
   mempty = pure mempty
   mappend = (<>)
 
-runStitchT :: Monad m => StitchT m a -> m (a, Block)
+runStitchT :: StitchT m a -> m (a, Block)
 runStitchT (StitchT x) = runWriterT x

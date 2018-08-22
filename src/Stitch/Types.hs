@@ -11,7 +11,7 @@ import Stitch.Types.Selector
 
 import Data.Map (Map)
 import Data.Text (Text)
-import Data.Semigroup
+import Data.Semigroup (Semigroup(..))
 import qualified Data.Map as Map
 
 -- | Children is a simple specialized wrapper around 'Map' with a custom 'Monoid' instance. Instead of simply 'Data.Map.union'ing the two 'Map's, the 'Children' instance 'mappend's the two values together in case of a key clash.

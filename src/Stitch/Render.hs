@@ -12,7 +12,7 @@ import Control.Monad.Stitch
 import Control.Monad.Trans.Stitch
 import Stitch.Types
 
-import Data.Monoid
+import Data.Monoid (Monoid(..))
 import Data.Text (Text)
 import qualified Data.Map as Map
 import qualified Data.Text as Text

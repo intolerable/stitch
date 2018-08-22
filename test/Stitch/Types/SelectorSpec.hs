@@ -2,7 +2,7 @@ module Stitch.Types.SelectorSpec where
 
 import Stitch.Types.Selector
 
-import Data.Monoid
+import Data.Monoid (Monoid(..))
 import Test.Hspec hiding (Selector)
 
 main :: IO ()

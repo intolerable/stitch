@@ -10,7 +10,7 @@ import Control.Monad.Trans.Stitch
 import Stitch.Types
 
 import Control.Monad.Trans.Writer.Strict
-import Data.Monoid
+import Data.Monoid (Monoid(..))
 import Data.Text (Text)
 import qualified Data.Map as Map
 import qualified Data.Text as Text

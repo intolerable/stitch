@@ -5,7 +5,7 @@ module Stitch.Types.Selector
 
 import Data.Text (Text)
 import Data.String
-import Data.Semigroup
+import Data.Semigroup (Semigroup(..))
 import qualified Data.Text as Text
 
 -- | Represents a CSS selector. Can be combined with other 'Selector's using its 'Monoid' instance.

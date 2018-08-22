@@ -9,6 +9,12 @@ copyright: © Fraser Murray 2015
 license: BSD3
 git: git://github.com/intolerable/stitch.git
 
+flags:
+  werror:
+    description: Enable -Werror
+    manual: true
+    default: false
+
 extra-source-files:
   - test/css/*.css
 
@@ -18,7 +24,14 @@ default-extensions:
 
 ghc-options:
   - -Wall
-  - -Werror
+
+when:
+  condition: flag(werror)
+  then:
+    ghc-options:
+      - -Werror
+  else:
+    ghc-options: [" "]
 
 library:
   source-dirs: src

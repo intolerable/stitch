@@ -3,3 +3,4 @@ cabal.sandbox.config
 *.cabal
 dist/
 .stack-work
+stack-lts-*.lock

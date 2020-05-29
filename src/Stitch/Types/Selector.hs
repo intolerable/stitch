@@ -30,7 +30,6 @@ instance Monoid Selector where
   mempty = Selector []
   mappend = (<>)
 
-
 -- | Parse a 'Selector' from a 'Text' value. This is the same function used by the 'IsString' instance used by @OverloadedStrings@.
 fromText :: Text -> Selector
 fromText = Selector . filter (not . Text.null) . map Text.strip . Text.splitOn ","

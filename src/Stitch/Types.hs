@@ -26,7 +26,6 @@ instance Monoid Children where
   mempty = Children mempty
   mappend = (<>)
 
-
 -- | Type for a CSS property or comment. The two are combined because we want to keep the ordering of comments and properties in the output CSS.
 data Property = Property Text Text
               | Comment Text

@@ -15,10 +15,11 @@ before_install:
 
 matrix:
   include:
-    - env: STACK_YAML=stack-lts-7.24  # GHC 8.0.1
-    - env: STACK_YAML=stack-lts-9.21  # GHC 8.0.2
+    - env: STACK_YAML=stack-lts-7.24 # GHC 8.0.1
+    - env: STACK_YAML=stack-lts-9.21 # GHC 8.0.2
     - env: STACK_YAML=stack-lts-11.22 # GHC 8.2.2
-    - env: STACK_YAML=stack.yaml      # current
+    - env: STACK_YAML=stack-lts-15.14 # GHC 8.8.3
+    - env: STACK_YAML=stack.yaml # current
 
 script:
   - travis_wait 180 stack --no-terminal --install-ghc --skip-ghc-check test
